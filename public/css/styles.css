@@ -1,6 +1,220 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#wrapper {
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+#top-header {
+  display: flex;
+  justify-content: space-between; /* Space elements to opposite sides */
+  align-items: center; /* Vertically center items */
+  padding: 10px 20px;
+  color: black; /* White font color */
+}
+
+/* Site Name Styling */
+.siteName a {
+  font-size: 1.8rem; /* H1-style font size */
+  font-weight: bold;
+  text-decoration: none; /* Remove link styling */
+  color: black; /* White font color */
+  transition: color 0.3s;
+}
+
+.siteName a:hover {
+  color: #04b0d0; /* Light blue hover effect */
+}
+
+/* Tools Section Styling */
+#tools a {
+  font-size: 1rem;
+  color: black; /* White font color */
+  text-decoration: none; /* Remove link underline */
+  transition: color 0.3s;
+}
+
+#tools a:hover {
+  color: blueviolet; /* Light blue hover effect */
+}
+
+/* Navigation Bar */
+nav {
+  width: 100%; /* Full width of the screen */
+  background-color: #242333; /* Dark blue background */
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around; /* Evenly space out the nav items */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  color: #fff; /* White font color */
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+nav ul li:hover {
+  color: #ffd700; /* Lighter blue color on hover */
+}
+
+
+/* Body Styling */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: left;
+  color: #000;
+}
+
+.hero h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #000; /* Black font for the header */
+}
+
+.hero img {
+  width: 100%; /* Full width for the image */
+  height: auto;
+  display: block;
+}
+
+/* Overlay for Delorean Info (info-box) */
+.hero .info-box {
+  position: absolute; /* Position it over the image */
+  top: 10%; /* Adjust this to position it vertically */
+  background-color: rgba(255, 255, 255, 0.7); /* Translucent background */
+  color: #04b0d0; /* Blue font color */
+  max-width: 80%; /* Adjust box size */
+}
+
+.hero h2 {
+  font-size: 1.5rem; /* Blue font for the header */
+}
+
+.hero ul {
+  list-style: none;
+  padding: 0;
+}
+
+.hero ul li {
+  color: #04b0d0; /* Blue font color */
+  font-size: 1rem;
+}
+
+.hero a img {
+  width: 100px;
+  border-radius: 3px;
+  display: block;
+}
+
+/* Reviews Section */
+#reviews {
+  margin-top: 20px;
+  padding: 10px 0; /* Add vertical spacing for the section */
+}
+
+#reviews ul {
+  list-style: disc; /* Ensure bullet points are displayed */
+  margin-left: 20px; /* Add spacing for the bullets */
+  padding-left: 0; /* Avoid extra padding */
+}
+
+#reviews li {
+  margin-bottom: 10px; /* Add space between reviews */
+  font-size: 1rem;
+}
+
+.time_rating {
+  padding-left: 5px;
+}
+
+/* Upgrades Section */
+#upgrades {
+  margin-top: 20px;
+}
+
+/* Grid layout for upgrades (2 rows, 2 items per row) */
+#upgrades .upgrade-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 15px; /* Space between the grid items */
+  justify-items: center; /* Center the items in the grid */
+}
+
+/* Individual upgrade card */
+.upgrade {
+  display: flex;
+  flex-direction: column; /* Stack the image and link */
+  align-items: center; /* Center image and link */
+  justify-content: center;
+  background-color: #04b0d0; /* Blue background */
+  border: 1px solid black; /* Thin black border */
+  padding: 5px;
+  margin-bottom: 30px;
+  width: 100%; /* Fixed width for the cards */
+  text-align: center;
+  position: relative; /* To allow positioning the link outside */
+}
+
+/* Image within the upgrade card */
+.upgrade img {
+  width: 80px; /* Image size */
+  height: 80px; /* Image size */
+  object-fit: contain; /* Ensure image fits well */
+}
+
+/* Link beneath the image, outside the box */
+.upgrade a {
+  color: blue;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: color 0.3s;
+  position: absolute;
+  bottom: -25px; /* Push the link below the card */
+}
+
+/* Hover effect for the link */
+.upgrade a:hover {
+  color: blueviolet; /* Change link color to gold on hover */
+}
+
+/* Footer section */
+footer {
+  margin: 20px 0;
 }
