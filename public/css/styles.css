@@ -78,7 +78,12 @@ nav ul li {
   transition: color 0.3s;
 }
 
-nav ul li:hover {
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
   color: #ffd700;
 }
 
@@ -136,6 +141,11 @@ body {
   width: 100px;
   border-radius: 3px;
   display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hero a img:hover {
+  transform: scale(1.1); /* Slightly grow the image on hover */
 }
 
 /* Reviews Section */
@@ -194,6 +204,7 @@ body {
 
 .upgrade a {
   color: blue;
+  text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
   margin-top: 10px;

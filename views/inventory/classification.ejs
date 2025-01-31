@@ -1,0 +1,13 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%# messages() %>
+
+<!-- Display the grid content -->
+<%- grid %>
