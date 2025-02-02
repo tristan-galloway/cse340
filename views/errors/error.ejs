@@ -1,0 +1,10 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Display the message using an unescaped EJS block -->
+<%- message %>
