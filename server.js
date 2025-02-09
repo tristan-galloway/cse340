@@ -54,25 +54,46 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Route to trigger a 500 error
+app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
+  // Simulate an error
+  const err = new Error("This is a custom 500 error");
+  err.status = 500;
+  next(err);  // Pass the error to the error handler
+}));
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
+  // Get the navigation (assuming it's a shared element in all views)
+  let nav = await utilities.getNav();
+
+  // Log the error to the console for debugging purposes
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+
+  // Check if the error has a specific status code (e.g., 404)
+  let message;
+  if (err.status === 404) {
+    message = err.message || 'Page Not Found';
+  } else if (err.status === 500) {
+    message = 'Oh no! Something went wrong on our side. Please try again later.';
+  } else {
+    message = err.message || 'An unexpected error occurred.';
+  }
+
+  // Render the error page with relevant information
+  res.status(err.status || 500).render("errors/error", {
     title: err.status || 'Server Error',
     message,
     nav
-  })
-})
+  });
+});
 
 /* ***********************
  * Local Server Information
