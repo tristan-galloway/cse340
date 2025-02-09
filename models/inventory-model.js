@@ -36,10 +36,10 @@ async function getInventoryItemById(itemId) {
        FROM public.inventory AS i
        JOIN public.classification AS c 
        ON i.classification_id = c.classification_id
-       WHERE i.inv_id = $1`,  // Using inv_id to fetch the vehicle
+       WHERE i.inv_id = $1`,
       [itemId]
     );
-    return data.rows[0];  // Return the first row (since inv_id is unique)
+    return data.rows[0];
   } catch (error) {
     console.error("getInventoryItemById error: " + error);
   }
