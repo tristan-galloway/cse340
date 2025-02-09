@@ -26,7 +26,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
       grid,
     });
   } catch (err) {
-    next(err); // Pass any other errors to the error handler
+    next(err);
   }
 }
 
