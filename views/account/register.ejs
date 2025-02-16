@@ -11,7 +11,7 @@ If not return to the base view. -->
 
 <!-- Display Errors -->
 <% if (errors) { %>
-  <ul class="notice">
+  <ul class="notice" id="form-errors">
  <% errors.array().forEach(error => { %>
    <li><%= error.msg %></li>
 <%  }) %>

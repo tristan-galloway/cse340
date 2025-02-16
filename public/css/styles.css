@@ -368,6 +368,12 @@ body {
   border-color: #007bff;
   background-color: white;
 }
+#form-errors {
+  font-style: italic;
+  font-weight: bold;
+  color: red;
+  list-style: none;
+}
 
 /* Register Form Section */
 #register-form {
