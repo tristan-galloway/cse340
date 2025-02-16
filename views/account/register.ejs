@@ -1,0 +1,55 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%- messages() %>
+
+<!-- Display the register form -->
+<form action="/account/register" method="post" id="register-form">
+  <label for="firstName">First Name:</label>
+  <input
+    id="firstName"
+    type="text"
+    name="account_firstname"
+    placeholder="First Name"
+    required
+  >
+
+  <label for="lastName">Last Name:</label>
+  <input
+    id="lastName"
+    type="text"
+    name="account_lastname"
+    placeholder="Last Name"
+    required
+  >
+
+  <label for="email">Email:</label>
+  <input
+    id="email"
+    type="email"
+    name="account_email"
+    placeholder="Email Account"
+    required
+  >
+
+  <label for="password">Password:</label>
+  <input
+    id="password"
+    type="password"
+    name="account_password"
+    placeholder="Password"
+    required
+    pattern="(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}"
+    title="Password must be at least 12 characters long, include at least one capital letter, one number, and one special character."
+  >
+  <p><small>(Minimum 12 characters, including 1 capital letter, 1 number, and 1 special character)</small></p>
+
+  <button type="submit">Register</button>
+  <p>Already have an account? <a href="/login">Login here</a></p>
+</form>

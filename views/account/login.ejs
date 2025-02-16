@@ -1,0 +1,20 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%- messages() %>
+
+<!-- Display the login form -->
+<form action="/login" method="post" id="login-form">
+  <label for="email">Email:</label>
+  <input id="email" type="email" name="account_email" placeholder="Email Address" required>
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="account_password" placeholder="Password" required>
+  <button type="submit">Login</button>
+  <p>No Account? <a href="/account/register">Sign-up</a></p>
+</form>

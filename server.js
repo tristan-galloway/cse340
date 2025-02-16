@@ -16,6 +16,7 @@ const static = require("./routes/static")
 const utilities = require("./utilities")
 const app = express()
 const baseController = require("./controllers/baseController")
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
@@ -38,6 +39,9 @@ app.use(function(req, res, next){
   next()
 })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -54,6 +58,8 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// account route
+app.use("/account", require("./routes/accountRoute"))
 // Route to trigger a 500 error
 app.get("/trigger-error", utilities.handleErrors(async (req, res, next) => {
   // Simulate an error
