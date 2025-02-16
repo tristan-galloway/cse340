@@ -342,6 +342,33 @@ body {
   text-decoration: underline;
 }
 
+/* Data Validation Register and Login Forms. */
+#login-form input,
+#register-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border 0.3s, background 0.3s;
+}
+#login-form input:valid,
+#register-form input:valid {
+  border-color: #28a745;
+  background-color: #e9f9e9; 
+}
+#login-form input:invalid,
+#register-form input:invalid {
+  border-color: #dc3545;
+  background-color: #fde8e8;
+}
+#login-form input:focus,
+#register-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: white;
+}
+
 /* Register Form Section */
 #register-form {
   width: 100%;

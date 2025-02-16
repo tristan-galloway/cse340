@@ -12,9 +12,23 @@ If not return to the base view. -->
 <!-- Display the login form -->
 <form action="/login" method="post" id="login-form">
   <label for="email">Email:</label>
-  <input id="email" type="email" name="account_email" placeholder="Email Address" required>
+  <input
+    id="email"
+    type="email"
+    name="account_email"
+    placeholder="Email Account"
+    required
+  >
   <label for="password">Password:</label>
-  <input id="password" type="password" name="account_password" placeholder="Password" required>
+  <input
+    id="password"
+    type="password"
+    name="account_password"
+    placeholder="Password"
+    required
+    pattern="(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}"
+    title="Password must be at least 12 characters long, include at least one capital letter, one number, and one special character."
+  >
   <button type="submit">Login</button>
   <p>No Account? <a href="/account/register">Sign-up</a></p>
 </form>

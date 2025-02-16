@@ -9,6 +9,15 @@ If not return to the base view. -->
 <!-- Adds the ability to see error messages -->
 <%- messages() %>
 
+<!-- Display Errors -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!-- Display the register form -->
 <form action="/account/register" method="post" id="register-form">
   <label for="firstName">First Name:</label>
