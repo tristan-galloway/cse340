@@ -70,16 +70,17 @@ Util.buildVehicleDetailView = async function (vehicle) {
  * ************************** */
 Util.getClassificationDropdown = async function (req, res, next) {
   let data = await invModel.getClassifications();
-  let dropdown = `<label for="classification">Classification:</label>
-    <select id="classification" name="classification" required>
+  let selectedClass = req.body.classification_id || ''; // Get selected classification from request body or default to empty string
+  
+  let dropdown = `<label for="classification_id">Classification:</label>
+    <select id="classification_id" name="classification_id" required>
       <option value="">Select Classification</option>
       ${data.rows.map(row => `
-        <option value="${row.classification_id}">${row.classification_name}</option>
+        <option value="${row.classification_id}" ${selectedClass === row.classification_id ? 'selected' : ''}>${row.classification_name}</option>
       `).join('')}
     </select>`;
   return dropdown;
 };
-
 
 /* ****************************************
  * Middleware For Handling Errors

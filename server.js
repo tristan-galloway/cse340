@@ -80,9 +80,6 @@ app.use(async (err, req, res, next) => {
   // Get the navigation (assuming it's a shared element in all views)
   let nav = await utilities.getNav();
 
-  // Log the error to the console for debugging purposes
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
-
   // Check if the error has a specific status code (e.g., 404)
   let message;
   if (err.status === 404) {
@@ -90,7 +87,9 @@ app.use(async (err, req, res, next) => {
   } else if (err.status === 500) {
     message = 'Oh no! Something went wrong on our side. Please try again later.';
   } else {
-    message = err.message + err.status || 'An unexpected error occurred on our end, try again later.';
+    message = 'An unexpected error occurred on our end, try again later.';
+    // Log the error to the console for debugging purposes
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`);
     // err.message + err.status ||
   }
 

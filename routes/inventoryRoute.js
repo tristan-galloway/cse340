@@ -24,4 +24,12 @@ router.post(
     utilities.handleErrors(invController.addClassification)
 );
 
+// Route to add a vehicle
+router.post(
+    "/add/vehicle",
+    validateManagement.vehicleRules(),
+    validateManagement.checkVehicleData,
+    utilities.handleErrors(invController.addVehicle)
+);
+
 module.exports = router;

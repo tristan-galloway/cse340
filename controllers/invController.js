@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const { validationResult } = require("express-validator");
 const utilities = require("../utilities/");
 const invCont = {}
 
@@ -119,17 +120,113 @@ invCont.addClassification = async function (req, res) {
 invCont.buildAddVehicleView = async function (req, res, next) {
   try {
     let nav = await utilities.getNav();
-    let dropdown = await utilities.getClassificationDropdown()
+    let dropdown = await utilities.getClassificationDropdown(req);  // Pass the request to the dropdown function
 
     res.render("./inventory/addVehicle", {
       title: "Add New Vehicle",
       nav,
       dropdown,
+      classification_id: req.body.classification_id || '',  // Default to empty string if undefined
     });
   } catch (err) {
     next(err);
   }
 }
 
+/* ****************************************
+ *  Add Vehicle
+ * *************************************** */
+invCont.addVehicle = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { 
+      inv_make, 
+      inv_model, 
+      inv_description, 
+      inv_image, 
+      inv_thumbnail, 
+      inv_price, 
+      inv_year, 
+      inv_miles, 
+      inv_color, 
+      classification_id 
+  } = req.body;
+
+  // Validate form inputs using the rules defined above
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+      return res.status(400).render("inventory/addVehicle", {
+          title: "Add Vehicle",
+          nav,
+          dropdown: await utilities.getClassificationDropdown(req),
+          errors: errors.array(),
+          inv_make, 
+          inv_model, 
+          inv_description, 
+          inv_image, 
+          inv_thumbnail, 
+          inv_price, 
+          inv_year, 
+          inv_miles, 
+          inv_color,
+          classification_id  // Preserve input values
+      });
+  }
+
+  try {
+      // Call the model to add the vehicle to the inventory
+      const addResult = await invModel.addVehicle({
+          inv_make, 
+          inv_model, 
+          inv_description, 
+          inv_image, 
+          inv_thumbnail, 
+          inv_price, 
+          inv_year, 
+          inv_miles, 
+          inv_color,
+          classification_id
+      });
+
+      if (addResult) {
+          req.flash("notice", `Vehicle '${inv_make} ${inv_model}' added successfully.`);
+          res.status(201).redirect("/inv");
+      } else {
+          req.flash("notice", "Sorry, adding the vehicle failed.");
+          res.status(500).render("inventory/addVehicle", {
+              title: "Add Vehicle",
+              nav,
+              dropdown: await utilities.getClassificationDropdown(req),
+              inv_make, 
+              inv_model, 
+              inv_description, 
+              inv_image, 
+              inv_thumbnail, 
+              inv_price, 
+              inv_year, 
+              inv_miles, 
+              inv_color,
+              classification_id
+          });
+      }
+  } catch (error) {
+      console.error("Error adding vehicle:", error);
+      req.flash("notice", "An error occurred while adding the vehicle.");
+      res.status(500).render("inventory/addVehicle", {
+          title: "Add Vehicle",
+          nav,
+          dropdown: await utilities.getClassificationDropdown(req),
+          inv_make, 
+          inv_model, 
+          inv_description, 
+          inv_image, 
+          inv_thumbnail, 
+          inv_price, 
+          inv_year, 
+          inv_miles, 
+          inv_color,
+          classification_id
+      });
+  }
+}
 
 module.exports = invCont

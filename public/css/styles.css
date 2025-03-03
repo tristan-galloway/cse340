@@ -289,145 +289,6 @@ body {
   background-color: #fff;
 }
 
-/* Acount Login Section */
-#login-form {
-  width: 100%;
-  max-width: 350px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #242333;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-#login-form label {
-  display: block;
-  text-align: left;
-  font-weight: bold;
-  color: white;
-}
-#login-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 0 0 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-#login-form button {
-  width: 100%;
-  padding: 10px;
-  background: white;
-  color: #242333;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-#login-form button:hover {
-  color: white;
-  background: #0056b3;
-}
-#login-form p {
-  color: white;
-  margin-top: 15px;
-  font-size: 14px;
-}
-#login-form a {
-  color: white;
-  text-decoration: none;
-}
-#login-form a:hover {
-  text-decoration: underline;
-}
-
-/* Data Validation Register and Login Forms. */
-#login-form input,
-#register-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border 0.3s, background 0.3s;
-}
-#login-form input:valid,
-#register-form input:valid {
-  border-color: #28a745;
-  background-color: #e9f9e9; 
-}
-#login-form input:invalid,
-#register-form input:invalid {
-  border-color: #dc3545;
-  background-color: #fde8e8;
-}
-#login-form input:focus,
-#register-form input:focus {
-  outline: none;
-  border-color: #007bff;
-  background-color: white;
-}
-#form-errors {
-  font-style: italic;
-  font-weight: bold;
-  color: red;
-  list-style: none;
-}
-
-/* Register Form Section */
-#register-form {
-  width: 100%;
-  max-width: 350px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #242333;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-#register-form label {
-  display: block;
-  text-align: left;
-  font-weight: bold;
-  color: white;
-  margin-top: 15px;
-}
-#register-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-#register-form button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  background: white;
-  color: #242333;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-#register-form button:hover {
-  color: white;
-  background: #0056b3;
-}
-#register-form p {
-  color: white;
-  font-size: 14px;
-}
-#register-form a {
-  color: white;
-  text-decoration: none;
-}
-#register-form a:hover {
-  text-decoration: underline;
-}
-
 /* Management Section */
 #management-list {
   margin: 0 auto;
@@ -504,6 +365,39 @@ body {
 .form-container button:hover {
   transform: scale(1.05);
 }
+/* Data Validation for All Forms within .form-container */
+.form-container form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border 0.3s, background 0.3s;
+}
+
+.form-container form input:valid {
+  border-color: #28a745;
+  background-color: #e9f9e9; 
+}
+
+.form-container form input:invalid {
+  border-color: #dc3545;
+  background-color: #fde8e8;
+}
+
+.form-container form input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: white;
+}
+
+#form-errors {
+  font-style: italic;
+  font-weight: bold;
+  color: red;
+  list-style: none;
+}
+
 
 /* Footer section */
 footer {

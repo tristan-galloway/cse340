@@ -19,7 +19,7 @@ If not return to the base view. -->
 <% } %>
 
 <!-- Display the register form -->
-<form action="/account/register" method="post" id="register-form">
+<form class="form-container" action="/account/register" method="post" id="register-form">
   <label for="firstName">First Name:</label>
   <input
     id="firstName"
@@ -63,5 +63,5 @@ If not return to the base view. -->
   <p><small>(Minimum 12 characters, including 1 capital letter, 1 number, and 1 special character)</small></p>
 
   <button type="submit">Register</button>
-  <p>Already have an account? <a href="/login">Login here</a></p>
+  <p>Already have an account? <a href="login">Login here</a></p>
 </form>
