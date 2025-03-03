@@ -26,7 +26,8 @@ If not return to the base view. -->
     type="text"
     name="account_firstname"
     placeholder="First Name"
-    required
+    required 
+    value="<%= locals.account_firstname %>"
   >
 
   <label for="lastName">Last Name:</label>
@@ -36,6 +37,7 @@ If not return to the base view. -->
     name="account_lastname"
     placeholder="Last Name"
     required
+    value="<%= locals.account_lastname %>"
   >
 
   <label for="email">Email:</label>
@@ -45,6 +47,7 @@ If not return to the base view. -->
     name="account_email"
     placeholder="Email Account"
     required
+    value="<%= locals.account_email %>"
   >
 
   <label for="password">Password:</label>

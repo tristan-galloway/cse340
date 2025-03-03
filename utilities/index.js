@@ -65,6 +65,22 @@ Util.buildVehicleDetailView = async function (vehicle) {
   `;
 };
 
+/* ***************************
+ *  Build the classification drop down menu
+ * ************************** */
+Util.getClassificationDropdown = async function (req, res, next) {
+  let data = await invModel.getClassifications();
+  let dropdown = `<label for="classification">Classification:</label>
+    <select id="classification" name="classification" required>
+      <option value="">Select Classification</option>
+      ${data.rows.map(row => `
+        <option value="${row.classification_id}">${row.classification_name}</option>
+      `).join('')}
+    </select>`;
+  return dropdown;
+};
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

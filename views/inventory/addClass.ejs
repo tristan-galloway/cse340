@@ -1,0 +1,33 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%- messages() %>
+
+<!-- Display Errors -->
+<% if (typeof errors !== "undefined" && errors.length > 0) { %>
+    <ul class="notice" id="form-errors">
+        <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<div class="form-container">
+    <form action="/inv/add/classification" method="POST">    
+        <label for="classification">Classification:</label>
+        <p><em>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</em></p>
+        <input type="text" id="classification_name" name="classification_name" 
+            pattern="[A-Za-z]+" 
+            title="Only alphabetic characters are allowed." 
+            required
+            value="<%= locals.classification_name %>"
+        >
+        <button type="submit">Submit</button>
+    </form>
+</div>

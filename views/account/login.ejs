@@ -9,8 +9,17 @@ If not return to the base view. -->
 <!-- Adds the ability to see error messages -->
 <%- messages() %>
 
+<!-- Display Errors -->
+<% if (errors) { %>
+  <ul class="notice" id="form-errors">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!-- Display the login form -->
-<form action="/login" method="post" id="login-form">
+<form action="/account/login" method="post" id="login-form">
   <label for="email">Email:</label>
   <input
     id="email"
@@ -18,6 +27,7 @@ If not return to the base view. -->
     name="account_email"
     placeholder="Email Account"
     required
+    value="<%= locals.account_email %>"
   >
   <label for="password">Password:</label>
   <input

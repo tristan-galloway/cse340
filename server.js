@@ -86,11 +86,12 @@ app.use(async (err, req, res, next) => {
   // Check if the error has a specific status code (e.g., 404)
   let message;
   if (err.status === 404) {
-    message = err.message || 'Page Not Found';
+    message = 'Page Not Found';
   } else if (err.status === 500) {
     message = 'Oh no! Something went wrong on our side. Please try again later.';
   } else {
-    message = err.message || 'An unexpected error occurred.';
+    message = err.message + err.status || 'An unexpected error occurred on our end, try again later.';
+    // err.message + err.status ||
   }
 
   // Render the error page with relevant information

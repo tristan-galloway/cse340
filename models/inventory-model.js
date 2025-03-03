@@ -31,10 +31,10 @@ async function getInventoryByClassificationId(classification_id) {
 async function getInventoryItemById(itemId) {
   try {
     const data = await pool.query(
-      `SELECT i.inv_make, i.inv_model, i.inv_color, i.inv_price, i.inv_miles, 
-              i.inv_description, i.inv_image
-       FROM public.inventory AS i
-       WHERE i.inv_id = $1`,
+      `SELECT inv_make, inv_model, inv_color, inv_price, inv_miles, 
+              inv_description, inv_image
+      FROM public.inventory
+      WHERE inv_id = $1`,
       [itemId]
     );
     return data.rows[0];
@@ -43,4 +43,30 @@ async function getInventoryItemById(itemId) {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryItemById };
+/* ***************************
+ *  Add classification
+ * ************************** */
+async function addClassification(classification) {
+  try {
+      const sql = "INSERT INTO classification (classification_name) VALUES ($1) RETURNING *";
+      return await pool.query(sql, [classification]);
+  } catch (error) {
+      return error.message;
+  }
+}
+
+/* ***************************
+ *  Check if classification exists
+ * ************************** */
+async function checkExistingClassification(classification_name) {
+  try {
+    const sql = "SELECT * FROM classification WHERE classification_name = $1";
+    const result = await pool.query(sql, [classification_name]);
+    return result.rows.length > 0; // Returns true if classification exists, false otherwise
+  } catch (error) {
+    console.error("Error checking classification:", error);
+    return false; // Assume it doesn't exist in case of an error
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryItemById, addClassification, checkExistingClassification };

@@ -1,0 +1,21 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%- messages() %>
+
+<div id="management">
+    <ul id="management-list">
+        <li>
+            <a href="/inv/add/classification">Add New Classification</a>
+        </li>
+        <li>
+            <a href="/inv/add/vehicle">Add New Vehicle</a>
+        </li>
+    </ul>
+</div>
