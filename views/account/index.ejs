@@ -1,0 +1,21 @@
+<!-- if a title exists, add it to the h1
+If not return to the base view. -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Adds the ability to see error messages -->
+<%- messages() %>
+
+<!-- Display Errors -->
+<% if (errors) { %>
+  <ul class="notice" id="form-errors">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<H2>You're logged in</H2>
