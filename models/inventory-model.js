@@ -108,6 +108,7 @@ async function addVehicle(vehicle) {
       classification_id
     ]);
 
+    console.log(result.rows[0])
     return result.rows[0]; // Returns the newly inserted vehicle
   } catch (error) {
     console.error("Error adding vehicle:", error);

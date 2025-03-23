@@ -173,41 +173,41 @@ invCont.addVehicle = async function (req, res) {
   }
 
   try {
-      // Call the model to add the vehicle to the inventory
-      const addResult = await invModel.addVehicle({
-          inv_make, 
-          inv_model, 
-          inv_description, 
-          inv_image, 
-          inv_thumbnail, 
-          inv_price, 
-          inv_year, 
-          inv_miles, 
-          inv_color,
-          classification_id
-      });
+    // Call the model to add the vehicle to the inventory
+    const addResult = await invModel.addVehicle({
+        inv_make, 
+        inv_model, 
+        inv_description, 
+        inv_image, 
+        inv_thumbnail, 
+        inv_price, 
+        inv_year, 
+        inv_miles, 
+        inv_color,
+        classification_id
+    });
 
-      if (addResult) {
-          req.flash("notice", `Vehicle '${inv_make} ${inv_model}' added successfully.`);
-          res.status(201).redirect("/inv");
-      } else {
-          req.flash("notice", "Sorry, adding the vehicle failed.");
-          res.status(500).render("inventory/addVehicle", {
-              title: "Add Vehicle",
-              nav,
-              dropdown: await utilities.getClassificationDropdown(req),
-              inv_make, 
-              inv_model, 
-              inv_description, 
-              inv_image, 
-              inv_thumbnail, 
-              inv_price, 
-              inv_year, 
-              inv_miles, 
-              inv_color,
-              classification_id
-          });
-      }
+    if (addResult) {
+        req.flash("notice", `Vehicle '${inv_make} ${inv_model}' added successfully.`);
+        res.status(201).redirect("/inv");
+    } else {
+        req.flash("notice", "Sorry, adding the vehicle failed.");
+        res.status(500).render("inventory/addVehicle", {
+            title: "Add Vehicle",
+            nav,
+            dropdown: await utilities.getClassificationDropdown(req),
+            inv_make, 
+            inv_model, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_year, 
+            inv_miles, 
+            inv_color,
+            classification_id
+        });
+    }
   } catch (error) {
       console.error("Error adding vehicle:", error);
       req.flash("notice", "An error occurred while adding the vehicle.");

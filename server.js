@@ -88,7 +88,7 @@ app.use(async (err, req, res, next) => {
   if (err.status === 404) {
     message = 'Page Not Found';
   } else if (err.status === 500) {
-    message = 'Oh no! Something went wrong on our side. Please try again later.';
+    message = `Oh no! Something went wrong on our side. Please try again later. [${err.message} ${err.status}]` ;
   } else {
     message = 'An unexpected error occurred on our end, try again later.';
     // Log the error to the console for debugging purposes
